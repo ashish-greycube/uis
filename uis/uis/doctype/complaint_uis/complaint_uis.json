@@ -1,0 +1,310 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-08-25 07:31:49.853988",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_vhmtf",
+  "naming_series",
+  "complaint_date",
+  "department",
+  "division",
+  "territory",
+  "qhse_complaint_no",
+  "column_break_d9mje",
+  "complaint_type",
+  "status",
+  "complete_date",
+  "complaint_details_section",
+  "complaint_by",
+  "complaint_others",
+  "party",
+  "full_name",
+  "contact_person",
+  "phone",
+  "email",
+  "complaint_territory",
+  "others_organisation_type",
+  "others_name",
+  "others_phone",
+  "others_email",
+  "others_territory",
+  "document_details_column",
+  "document_details",
+  "sales_order",
+  "project",
+  "delivery_note",
+  "sales_invoice",
+  "receiving_note",
+  "section_break_gjkss",
+  "nature_of_complaint",
+  "complaint_close_date",
+  "column_break_smays",
+  "complaint_record",
+  "complaint_receiver",
+  "complaint_receiver_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_vhmtf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "complaint_date",
+   "fieldtype": "Date",
+   "label": "Complaint Date",
+   "options": "Today"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "division",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Division",
+   "options": "Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "territory",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Territory",
+   "options": "Territory",
+   "reqd": 1
+  },
+  {
+   "fieldname": "qhse_complaint_no",
+   "fieldtype": "Data",
+   "label": "QHSE Complaint No"
+  },
+  {
+   "fieldname": "column_break_d9mje",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "complaint_type",
+   "fieldtype": "Select",
+   "label": "Complaint Type",
+   "options": "\nInternal\nExternal"
+  },
+  {
+   "fieldname": "complete_date",
+   "fieldtype": "Date",
+   "label": "Complete Date"
+  },
+  {
+   "fieldname": "complaint_details_section",
+   "fieldtype": "Section Break",
+   "label": "Complaint Details"
+  },
+  {
+   "fieldname": "complaint_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Complaint By",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Data",
+   "label": "Contact Person"
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "label": "Phone ",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "bold": 1,
+   "fieldname": "document_details_column",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sales_order",
+   "fieldtype": "Link",
+   "label": "Sales Order",
+   "options": "Sales Order"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fieldname": "delivery_note",
+   "fieldtype": "Link",
+   "label": "Delivery Note",
+   "options": "Delivery Note"
+  },
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "label": "Sales Invoice",
+   "options": "Sales Invoice"
+  },
+  {
+   "fieldname": "receiving_note",
+   "fieldtype": "Link",
+   "label": "Receiving Note",
+   "options": "Receiving Note_uis"
+  },
+  {
+   "fieldname": "section_break_gjkss",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "nature_of_complaint",
+   "fieldtype": "Small Text",
+   "label": "Nature of Complaint"
+  },
+  {
+   "fieldname": "complaint_close_date",
+   "fieldtype": "Date",
+   "label": "Complaint Close Date"
+  },
+  {
+   "fieldname": "column_break_smays",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "complaint_record",
+   "fieldtype": "Select",
+   "label": "Complaint Record",
+   "options": "\nVerbal\nWritten\nReply"
+  },
+  {
+   "fieldname": "complaint_receiver",
+   "fieldtype": "Link",
+   "label": "Complaint Receiver",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "complaint_receiver.employee_name",
+   "fieldname": "complaint_receiver_name",
+   "fieldtype": "Data",
+   "label": "Complaint Receiver Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "document_details",
+   "fieldtype": "Heading",
+   "label": "Document Details"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Complaint Status",
+   "options": "Open\nIn Process\nOverdue\nClosed"
+  },
+  {
+   "fieldname": "party",
+   "fieldtype": "Dynamic Link",
+   "label": "Party",
+   "options": "complaint_by",
+   "reqd": 1
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "depends_on": "eval:doc.complaint_others==1",
+   "fieldname": "others_organisation_type",
+   "fieldtype": "Data",
+   "label": "Organisation Type",
+   "mandatory_depends_on": "eval:doc.complaint_others==1"
+  },
+  {
+   "depends_on": "eval:doc.complaint_others==1",
+   "fieldname": "others_name",
+   "fieldtype": "Data",
+   "label": "Name"
+  },
+  {
+   "depends_on": "eval:doc.complaint_others==1",
+   "fieldname": "others_phone",
+   "fieldtype": "Data",
+   "label": "Phone",
+   "options": "Phone"
+  },
+  {
+   "depends_on": "eval:doc.complaint_others==1",
+   "fieldname": "others_email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "depends_on": "eval:doc.complaint_others==1",
+   "fieldname": "others_territory",
+   "fieldtype": "Data",
+   "label": "Territory"
+  },
+  {
+   "default": "0",
+   "fieldname": "complaint_others",
+   "fieldtype": "Check",
+   "label": "Complaint by Others"
+  },
+  {
+   "fieldname": "complaint_territory",
+   "fieldtype": "Link",
+   "label": "Territory",
+   "options": "Territory"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Complaint ",
+   "options": "Complaint-.YY.-.MM.-.#####."
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-08-25 19:16:10.273127",
+ "modified_by": "Administrator",
+ "module": "Uis",
+ "name": "Complaint UIS",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
