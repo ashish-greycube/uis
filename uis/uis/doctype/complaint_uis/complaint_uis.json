@@ -24,9 +24,9 @@
   "complaint_others",
   "party",
   "full_name",
-  "contact_person",
   "phone",
   "email",
+  "contact_person",
   "complaint_territory",
   "others_organisation_type",
   "others_name",
@@ -73,8 +73,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Division",
-   "options": "Department",
-   "reqd": 1
+   "options": "Department"
   },
   {
    "fieldname": "territory",
@@ -120,19 +119,22 @@
   {
    "fieldname": "contact_person",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Contact Person"
   },
   {
    "fieldname": "phone",
    "fieldtype": "Data",
    "label": "Phone ",
-   "options": "Phone"
+   "options": "Phone",
+   "read_only": 1
   },
   {
    "fieldname": "email",
    "fieldtype": "Data",
    "label": "Email",
-   "options": "Email"
+   "options": "Email",
+   "read_only": 1
   },
   {
    "bold": 1,
@@ -167,7 +169,7 @@
    "fieldname": "receiving_note",
    "fieldtype": "Link",
    "label": "Receiving Note",
-   "options": "Receiving Note_uis"
+   "options": "Receiving Note UIS"
   },
   {
    "fieldname": "section_break_gjkss",
@@ -218,6 +220,7 @@
    "options": "Open\nIn Process\nOverdue\nClosed"
   },
   {
+   "depends_on": "eval:(doc.complaint_by==\"Employee\")||(doc.complaint_by==\"Customer\")||(doc.complaint_by==\"Supplier\")",
    "fieldname": "party",
    "fieldtype": "Dynamic Link",
    "label": "Party",
@@ -227,14 +230,16 @@
   {
    "fieldname": "full_name",
    "fieldtype": "Data",
-   "label": "Full Name"
+   "label": "Full Name",
+   "read_only": 1
   },
   {
    "depends_on": "eval:doc.complaint_others==1",
    "fieldname": "others_organisation_type",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "label": "Organisation Type",
-   "mandatory_depends_on": "eval:doc.complaint_others==1"
+   "mandatory_depends_on": "eval:doc.complaint_others==1",
+   "options": "\nRegulator\nGovernment Sector"
   },
   {
    "depends_on": "eval:doc.complaint_others==1",
@@ -284,7 +289,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-25 19:16:10.273127",
+ "modified": "2023-08-26 14:37:46.942031",
  "modified_by": "Administrator",
  "module": "Uis",
  "name": "Complaint UIS",

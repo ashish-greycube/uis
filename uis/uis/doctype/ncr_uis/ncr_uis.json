@@ -11,20 +11,24 @@
   "naming_series",
   "type",
   "complaint_number",
-  "department",
-  "division",
-  "territory",
-  "reported_by",
-  "reportedby_name",
-  "reported_by_other",
-  "other_reported",
+  "complaint_department",
+  "complaint_division",
+  "complaint_territory",
+  "audit_department",
+  "audit_division",
+  "audit_territory",
   "column_break_fqhxj",
   "posting_date",
   "subcategory_of_type",
   "grade_of_findings",
+  "section_break_9ty6u",
   "nature_of_complaint",
+  "reported_by",
+  "employee_name",
+  "other_reported",
   "section_break_gnqmg",
   "decision",
+  "reason_section",
   "reason",
   "investigation_section_section",
   "actions_taken",
@@ -38,7 +42,8 @@
   "root_cause_analysis",
   "position",
   "proposed_corrective_action",
-  "closing_date"
+  "closing_date",
+  "closed_by_name"
  ],
  "fields": [
   {
@@ -46,7 +51,7 @@
    "fieldtype": "Select",
    "hidden": 1,
    "label": "NCR/CAR No",
-   "options": ".YY.-.MM.-NCR-.###."
+   "options": ".YY.-.MM.-NCR-.####."
   },
   {
    "fieldname": "type",
@@ -64,24 +69,6 @@
    "label": "Complaint Number",
    "options": "Complaint UIS",
    "reqd": 1
-  },
-  {
-   "fetch_from": "complaint_number.department",
-   "fieldname": "department",
-   "fieldtype": "Data",
-   "label": "Department"
-  },
-  {
-   "fetch_from": "complaint_number.division",
-   "fieldname": "division",
-   "fieldtype": "Data",
-   "label": "Division"
-  },
-  {
-   "fetch_from": "complaint_number.territory",
-   "fieldname": "territory",
-   "fieldtype": "Data",
-   "label": "Territory"
   },
   {
    "fieldname": "column_break_fqhxj",
@@ -114,32 +101,19 @@
   },
   {
    "fieldname": "reported_by",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Identified/Reported By",
-   "options": "Employee"
+   "options": "\nEmployee\nOther"
   },
   {
-   "default": "0",
-   "fieldname": "reported_by_other",
-   "fieldtype": "Check",
-   "label": "Identified/Reported By Other"
-  },
-  {
-   "depends_on": "eval:doc.reported_by_other==1",
    "fieldname": "other_reported",
    "fieldtype": "Data",
-   "label": "Name"
-  },
-  {
-   "fieldname": "reportedby_name",
-   "fieldtype": "Data",
-   "label": "Name"
+   "label": "Other Name"
   },
   {
    "depends_on": "eval:doc.decision==\"Rejected\"",
    "fieldname": "investigation_section_section",
-   "fieldtype": "Section Break",
-   "label": "Investigation Section"
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "actions_taken",
@@ -175,7 +149,7 @@
   {
    "fieldname": "nominee_to_investigate_nam",
    "fieldtype": "Link",
-   "label": "Nominee to investigate Nam",
+   "label": "Nominee to investigate Name",
    "options": "Employee"
   },
   {
@@ -184,10 +158,11 @@
    "label": "Root Cause Analysis"
   },
   {
-   "fetch_from": "reported_by.designation",
+   "fetch_from": "nominee_to_investigate_nam.designation",
    "fieldname": "position",
    "fieldtype": "Data",
-   "label": "Position"
+   "label": "Position",
+   "read_only": 1
   },
   {
    "fieldname": "proposed_corrective_action",
@@ -220,11 +195,78 @@
    "fieldname": "ncr_date",
    "fieldtype": "Date",
    "label": "Date"
+  },
+  {
+   "depends_on": "eval:doc.decision==\"Rejected\"",
+   "fieldname": "reason_section",
+   "fieldtype": "Section Break",
+   "label": "Investigation Section"
+  },
+  {
+   "fieldname": "section_break_9ty6u",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.reported_by==\"Employee\"",
+   "fieldname": "employee_name",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "closed_by_name",
+   "fieldtype": "Link",
+   "label": "Name",
+   "options": "Employee"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Complaint\"",
+   "fetch_from": "complaint_number.department",
+   "fieldname": "complaint_department",
+   "fieldtype": "Data",
+   "label": "Department",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type==\"Complaint\"",
+   "fetch_from": "complaint_number.division",
+   "fieldname": "complaint_division",
+   "fieldtype": "Data",
+   "label": "Division",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type==\"Complaint\"",
+   "fetch_from": "complaint_number.territory",
+   "fieldname": "complaint_territory",
+   "fieldtype": "Data",
+   "label": "Territory",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type==\"Audit Finding\"",
+   "fieldname": "audit_department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Audit Finding\"",
+   "fieldname": "audit_division",
+   "fieldtype": "Data",
+   "label": "Division"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Audit Finding\"",
+   "fieldname": "audit_territory",
+   "fieldtype": "Link",
+   "label": "Territory",
+   "options": "Territory"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-25 19:18:20.149038",
+ "modified": "2023-08-26 14:40:18.282472",
  "modified_by": "Administrator",
  "module": "Uis",
  "name": "NCR UIS",

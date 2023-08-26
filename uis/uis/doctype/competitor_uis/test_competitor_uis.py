@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestReceivingNoteUIS(FrappeTestCase):
+class TestCompetitorUIS(FrappeTestCase):
 	pass

@@ -1,0 +1,47 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-08-26 13:04:07.501775",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "competitor_uis",
+  "price",
+  "win"
+ ],
+ "fields": [
+  {
+   "fieldname": "competitor_uis",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Competitor UIS ",
+   "options": "Competitor UIS"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Price"
+  },
+  {
+   "default": "0",
+   "fieldname": "win",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Win"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-08-26 13:12:26.360567",
+ "modified_by": "Administrator",
+ "module": "Uis",
+ "name": "Opportunity Lost To Competitor UIS",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
