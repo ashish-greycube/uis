@@ -72,13 +72,10 @@ frappe.ui.form.on('Complaint UIS', {
 		else if (frm.doc.complaint_by == "Customer") {
 
 
-				frappe.db.get_value('Customer', frm.doc.party, ['customer_name','territory'])
+				frappe.db.get_value('Customer', frm.doc.party,'customer_name')
 				.then(r => {
-				console.log(r.message.customer_name,r.message.territory)
 				frm.set_value('full_name',r.message.customer_name)
-				frm.set_value('complaint_territory',r.message.territory)
 				})
-
 				frappe.call({
 					method: 'uis.uis.doctype.complaint_uis.complaint_uis.get_contact_and_email',
 					args: { 
@@ -86,22 +83,30 @@ frappe.ui.form.on('Complaint UIS', {
 						"name": frm.doc.party 
 					},
 					callback: function (r) {
-
 						if (r.message) {
 							var contactEmail = r.message.contact_email;
 							var contactMobile = r.message.contact_mobile;
+							var contactPerson = r.message.contact_person;
+			
+							if (contactEmail && contactMobile &&  contactPerson) { 
 
-							console.log(contactEmail, contactMobile);
-		
-							
-							frm.set_value('email', contactEmail);
-							frm.set_value('phone', contactMobile);
+								frappe.db.get_value('Contact', contactPerson, 'first_name')
+								.then(r => {
+								frm.set_value('contact_person',r.message.first_name)
+							})
+								// frm.set_value('contact_person',contactPerson);
+								frm.set_value('email', contactEmail);
+								frm.set_value('phone', contactMobile);
+							} else {
+								frappe.msgprint("No contact details found for this Customer.");
+							}
+						} else {
+							frappe.msgprint("No Primary Contact is set for this Customer.");
 						}
-						else{
-							frappe.msgprint("No Primary Contact is set for this Customer.")
-						}
-
 					}
+
+
+
 				})
         }
 
@@ -110,7 +115,6 @@ frappe.ui.form.on('Complaint UIS', {
 
 				frappe.db.get_value('Supplier', frm.doc.party, 'supplier_name')
 				.then(r => {
-				console.log(r.message.supplier_name)
 				frm.set_value('full_name',r.message.supplier_name)
 				})
 
@@ -121,26 +125,32 @@ frappe.ui.form.on('Complaint UIS', {
 						"name": frm.doc.party 
 					},
 					callback: function (r) {
-
 						if (r.message) {
 							var contactEmail = r.message.contact_email;
 							var contactMobile = r.message.contact_mobile;
+							var contactPerson = r.message.contact_person;
+			
+							if (contactEmail && contactMobile &&  contactPerson) { 
 
-							console.log(contactEmail, contactMobile);
-		
-							
-							frm.set_value('email', contactEmail);
-							frm.set_value('phone', contactMobile);
+								frappe.db.get_value('Contact', contactPerson, 'first_name')
+								.then(r => {
+								frm.set_value('contact_person',r.message.first_name)
+							})
+								// frm.set_value('contact_person',contactPerson);
+								frm.set_value('email', contactEmail);
+								frm.set_value('phone', contactMobile);
+							} else {
+								frappe.msgprint("No contact details found for this Supplier.");
+							}
+						} else {
+							frappe.msgprint("No Primary Contact is set for this Supplier.");
 						}
-						else{
-							frappe.msgprint("No Primary Contact is set for this Supplier.")
-						}
-
 					}
 				})
 
 			
         }
+		
     },
 
 	complaint_date: function(frm) {
@@ -160,6 +170,8 @@ frappe.ui.form.on('Complaint UIS', {
 		else{
 			frm.set_df_property('complaint_close_date','reqd',0)
 		}
+
+		
 	},
 	complaint_others: function(frm){
 		if(frm.doc.complaint_others==1){
@@ -180,19 +192,21 @@ frappe.ui.form.on('Complaint UIS', {
 			frm.set_df_property('email','hidden',0)
 			frm.set_df_property('complaint_territory','hidden',0)
 		}
-	}
+	},
 
 
 
 
 
-	// refresh: function(frm) {
+	refresh: function(frm) {
    
-    //     var today = frappe.datetime.nowdate();
-    //     var targetDate = frappe.datetime.add_days(today, 3);
-
-    //     frm.set_value('complete_date', targetDate);
-    // }
+        frm.add_custom_button('Create NCR', () => {
+			frappe.new_doc("NCR UIS", {
+				type: "Complaint",
+				complaint_number:frm.doc.name
+			});
+		})
+    }
 
 
 });

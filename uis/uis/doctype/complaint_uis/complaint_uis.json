@@ -14,7 +14,6 @@
   "department",
   "division",
   "territory",
-  "qhse_complaint_no",
   "column_break_d9mje",
   "complaint_type",
   "status",
@@ -27,7 +26,7 @@
   "phone",
   "email",
   "contact_person",
-  "complaint_territory",
+  "party_territory",
   "others_organisation_type",
   "others_name",
   "others_phone",
@@ -73,7 +72,8 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Division",
-   "options": "Department"
+   "options": "Department",
+   "reqd": 1
   },
   {
    "fieldname": "territory",
@@ -82,11 +82,6 @@
    "label": "Territory",
    "options": "Territory",
    "reqd": 1
-  },
-  {
-   "fieldname": "qhse_complaint_no",
-   "fieldtype": "Data",
-   "label": "QHSE Complaint No"
   },
   {
    "fieldname": "column_break_d9mje",
@@ -119,8 +114,8 @@
   {
    "fieldname": "contact_person",
    "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Contact Person"
+   "label": "Contact Person",
+   "read_only": 1
   },
   {
    "fieldname": "phone",
@@ -193,9 +188,10 @@
    "fieldname": "complaint_record",
    "fieldtype": "Select",
    "label": "Complaint Record",
-   "options": "\nVerbal\nWritten\nReply"
+   "options": "\nVerbal\nWritten"
   },
   {
+   "description": "Upon completion of this section, obtain complaint # from the QHSE and proceed to Complaint Analysis by using the NCR form",
    "fieldname": "complaint_receiver",
    "fieldtype": "Link",
    "label": "Complaint Receiver",
@@ -216,6 +212,7 @@
   {
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Complaint Status",
    "options": "Open\nIn Process\nOverdue\nClosed"
   },
@@ -224,8 +221,8 @@
    "fieldname": "party",
    "fieldtype": "Dynamic Link",
    "label": "Party",
-   "options": "complaint_by",
-   "reqd": 1
+   "mandatory_depends_on": "eval:(doc.complaint_by==\"Employee\")||(doc.complaint_by==\"Customer\")||(doc.complaint_by==\"Supplier\")",
+   "options": "complaint_by"
   },
   {
    "fieldname": "full_name",
@@ -274,22 +271,23 @@
    "label": "Complaint by Others"
   },
   {
-   "fieldname": "complaint_territory",
-   "fieldtype": "Link",
-   "label": "Territory",
-   "options": "Territory"
-  },
-  {
+   "default": "CT-.YY.-.MM.-.#####.",
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "hidden": 1,
    "label": "Complaint ",
-   "options": "Complaint-.YY.-.MM.-.#####."
+   "options": "CT-.YY.-.MM.-.#####."
+  },
+  {
+   "fieldname": "party_territory",
+   "fieldtype": "Link",
+   "label": "Party Territory",
+   "options": "Territory"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-26 14:37:46.942031",
+ "modified": "2023-08-29 07:58:25.683130",
  "modified_by": "Administrator",
  "module": "Uis",
  "name": "Complaint UIS",
@@ -311,5 +309,22 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Orange",
+   "title": "Open"
+  },
+  {
+   "color": "Green",
+   "title": "In Process"
+  },
+  {
+   "color": "Red",
+   "title": "Overdue"
+  },
+  {
+   "color": "Gray",
+   "title": "Closed"
+  }
+ ]
 }
