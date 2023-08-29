@@ -45,3 +45,20 @@ class CompetitorUIS(Document):
 			contact.add_phone(args.get("mobile_no"), is_primary_mobile_no=True)
 		contact.insert()
 		return contact
+
+@frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
+def get_customer_primary_contact(doctype, txt, searchfield, start, page_len, filters):
+	customer = filters.get("customer_name")
+
+	con = qb.DocType("Contact")
+	dlink = qb.DocType("Dynamic Link")
+
+	return (
+		qb.from_(con)
+		.join(dlink)
+		.on(con.name == dlink.parent)
+		.select(con.name, con.email_id)
+		.where((dlink.link_name == customer) & (con.name.like(f"%{txt}%")))
+		.run()
+	)

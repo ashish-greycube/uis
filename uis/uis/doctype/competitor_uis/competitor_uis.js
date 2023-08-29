@@ -17,16 +17,16 @@ frappe.ui.form.on('Competitor UIS', {
 				}
 			});
 		}
-		if(!frm.doc.customer_primary_address){
-			frm.set_value("primary_address", "");
-		}
+		// if(!frm.doc.customer_primary_address){
+		// 	frm.set_value("primary_address", "");
+		// }
 	},
 	setup: function(frm) {
 		frm.set_query('customer_primary_contact', function(doc) {
 			return {
-				query: "erpnext.selling.doctype.customer.customer.get_customer_primary_contact",
+				query: "uis.uis.doctype.competitor_uis.competitor_uis.get_customer_primary_contact",
 				filters: {
-					'Competitor UIS': doc.name
+					'customer': doc.name
 				}
 			}
 		})
