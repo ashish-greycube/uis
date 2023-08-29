@@ -17,20 +17,13 @@ from frappe.model.rename_doc import update_linked_doctypes
 
 class CompetitorUIS(Document):
 	def on_update(self):
-		# self.validate_name_with_customer_group()
 		self.create_primary_contact()
 		# self.create_primary_address()
 
-		# if self.flags.old_lead != self.lead_name:
-		# 	self.update_lead_status()
 
-		if self.flags.is_new_doc:
-			self.link_lead_address_and_contact()
-
-		# self.update_customer_groups()
 	
 	def create_primary_contact(self):
-		if not self.customer_primary_contact and not self.lead_name:
+		if not self.customer_primary_contact:
 			if self.mobile_no or self.email_id:
 				contact = self.make_contact(self)
 				self.db_set("customer_primary_contact", contact.name)

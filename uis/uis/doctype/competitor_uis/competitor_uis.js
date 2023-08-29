@@ -2,6 +2,9 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Competitor UIS', {
+	refresh: function(frm){
+		frappe.dynamic_link = {doc: frm.doc, fieldname: 'name', doctype: 'Competitor UIS'}
+	},
 	customer_primary_address: function(frm){
 		if(frm.doc.customer_primary_address){
 			frappe.call({
@@ -23,7 +26,7 @@ frappe.ui.form.on('Competitor UIS', {
 			return {
 				query: "erpnext.selling.doctype.customer.customer.get_customer_primary_contact",
 				filters: {
-					'customer': doc.name
+					'Competitor UIS': doc.name
 				}
 			}
 		})
@@ -31,7 +34,7 @@ frappe.ui.form.on('Competitor UIS', {
 		frm.set_query('customer_primary_address', function(doc) {
 			return {
 				filters: {
-					'link_doctype': 'Customer',
+					'link_doctype': 'Competitor UIS',
 					'link_name': doc.name
 				}
 			}
