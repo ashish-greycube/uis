@@ -33,9 +33,6 @@ frappe.ui.form.on('Complaint UIS', {
 			};
 		});
 	
-	
-	
-	
 	},
 	onload: function(frm) {
         
@@ -94,7 +91,6 @@ frappe.ui.form.on('Complaint UIS', {
 								.then(r => {
 								frm.set_value('contact_person',r.message.first_name)
 							})
-								// frm.set_value('contact_person',contactPerson);
 								frm.set_value('email', contactEmail);
 								frm.set_value('phone', contactMobile);
 							} else {
@@ -136,7 +132,6 @@ frappe.ui.form.on('Complaint UIS', {
 								.then(r => {
 								frm.set_value('contact_person',r.message.first_name)
 							})
-								// frm.set_value('contact_person',contactPerson);
 								frm.set_value('email', contactEmail);
 								frm.set_value('phone', contactMobile);
 							} else {
@@ -193,11 +188,6 @@ frappe.ui.form.on('Complaint UIS', {
 			frm.set_df_property('complaint_territory','hidden',0)
 		}
 	},
-
-
-	
-
-
 
 	refresh: function(frm) {
    

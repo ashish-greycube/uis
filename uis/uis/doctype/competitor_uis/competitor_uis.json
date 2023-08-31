@@ -3,7 +3,7 @@
  "allow_events_in_timeline": 1,
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "naming_series:",
+ "autoname": "field:competitor_name",
  "creation": "2023-08-26 12:28:27.354167",
  "default_view": "List",
  "description": "Buyer of Goods and Services.",
@@ -13,23 +13,19 @@
  "field_order": [
   "basic_info",
   "naming_series",
-  "customer_name",
+  "competitor_name",
   "territory",
-  "customer_group",
+  "competitor_group",
   "column_break0",
   "website",
   "disabled",
   "contact_and_address_tab",
-  "address_contacts",
-  "address_html",
-  "column_break1",
-  "contact_html",
   "primary_address_and_contact_detail",
-  "customer_primary_contact",
+  "competitor_primary_contact",
   "mobile_no",
   "email_id",
   "column_break_26",
-  "customer_primary_address",
+  "competitor_primary_address",
   "primary_address"
  ],
  "fields": [
@@ -47,29 +43,6 @@
    "no_copy": 1,
    "options": "Competitor.-YY.",
    "set_only_once": 1
-  },
-  {
-   "bold": 1,
-   "fieldname": "customer_name",
-   "fieldtype": "Data",
-   "in_global_search": 1,
-   "label": "Competitor Name",
-   "no_copy": 1,
-   "oldfieldname": "customer_name",
-   "oldfieldtype": "Data",
-   "reqd": 1,
-   "search_index": 1
-  },
-  {
-   "fieldname": "customer_group",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Competitor Group",
-   "oldfieldname": "customer_group",
-   "oldfieldtype": "Link",
-   "options": "Customer Group",
-   "search_index": 1
   },
   {
    "fieldname": "column_break0",
@@ -98,44 +71,10 @@
    "label": "Contact & Address"
   },
   {
-   "depends_on": "eval:!doc.__islocal",
-   "fieldname": "address_contacts",
-   "fieldtype": "Section Break",
-   "label": "Address and Contact",
-   "options": "fa fa-map-marker"
-  },
-  {
-   "depends_on": "eval: !doc.__islocal",
-   "fieldname": "address_html",
-   "fieldtype": "HTML",
-   "label": "Address HTML",
-   "read_only": 1
-  },
-  {
-   "fieldname": "column_break1",
-   "fieldtype": "Column Break",
-   "width": "50%"
-  },
-  {
-   "depends_on": "eval: !doc.__islocal",
-   "fieldname": "contact_html",
-   "fieldtype": "HTML",
-   "label": "Contact HTML",
-   "oldfieldtype": "HTML",
-   "read_only": 1
-  },
-  {
    "description": "Select, to make the customer searchable with these fields",
    "fieldname": "primary_address_and_contact_detail",
    "fieldtype": "Section Break",
    "label": "Primary Address and Contact"
-  },
-  {
-   "description": "Reselect, if the chosen contact is edited after save",
-   "fieldname": "customer_primary_contact",
-   "fieldtype": "Link",
-   "label": "Customer Primary Contact",
-   "options": "Contact"
   },
   {
    "fetch_from": "customer_primary_contact.mobile_no",
@@ -154,13 +93,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "description": "Reselect, if the chosen address is edited after save",
-   "fieldname": "customer_primary_address",
-   "fieldtype": "Link",
-   "label": "Customer Primary Address",
-   "options": "Address"
-  },
-  {
    "fieldname": "primary_address",
    "fieldtype": "Text",
    "label": "Primary Address",
@@ -171,17 +103,53 @@
    "fieldname": "disabled",
    "fieldtype": "Check",
    "label": "Disabled"
+  },
+  {
+   "bold": 1,
+   "fieldname": "competitor_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "label": "Competitor Name",
+   "no_copy": 1,
+   "oldfieldname": "customer_name",
+   "oldfieldtype": "Data",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "competitor_group",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Competitor Group",
+   "oldfieldname": "customer_group",
+   "oldfieldtype": "Link",
+   "options": "Customer Group"
+  },
+  {
+   "description": "Reselect, if the chosen contact is edited after save",
+   "fieldname": "competitor_primary_contact",
+   "fieldtype": "Link",
+   "label": "Customer Primary Contact",
+   "options": "Contact"
+  },
+  {
+   "description": "Reselect, if the chosen address is edited after save",
+   "fieldname": "competitor_primary_address",
+   "fieldtype": "Link",
+   "label": "Customer Primary Address",
+   "options": "Address"
   }
  ],
  "icon": "fa fa-user",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-26 12:50:08.352992",
+ "modified": "2023-08-31 15:58:08.586032",
  "modified_by": "Administrator",
  "module": "Uis",
  "name": "Competitor UIS",
  "name_case": "Title Case",
- "naming_rule": "By \"Naming Series\" field",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -255,10 +223,9 @@
    "role": "Accounts Manager"
   }
  ],
- "search_fields": "customer_name,customer_group,territory, mobile_no,primary_address",
  "sort_field": "modified",
  "sort_order": "ASC",
  "states": [],
- "title_field": "customer_name",
+ "title_field": "competitor_name",
  "track_changes": 1
 }
