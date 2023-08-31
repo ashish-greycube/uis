@@ -46,6 +46,14 @@ frappe.ui.form.on('NCR UIS', {
 			frm.set_df_property('employee_name','hidden',1)
 		}
 	},
+
+
+	refresh:function(frm){
+		if(frm.doc.type==="Complaint" && frm.doc.complaint_number!=""){
+			frm.set_df_property('type','read_only',1)
+			frm.set_df_property('complaint_number','read_only',1)
+		}
+	}
 	
 
 	// },

@@ -286,8 +286,13 @@
   }
  ],
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2023-08-29 07:58:25.683130",
+ "links": [
+  {
+   "link_doctype": "NCR UIS",
+   "link_fieldname": "complaint_number"
+  }
+ ],
+ "modified": "2023-08-31 10:25:24.138675",
  "modified_by": "Administrator",
  "module": "Uis",
  "name": "Complaint UIS",

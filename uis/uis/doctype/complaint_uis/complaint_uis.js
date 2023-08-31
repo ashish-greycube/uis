@@ -195,6 +195,7 @@ frappe.ui.form.on('Complaint UIS', {
 	},
 
 
+	
 
 
 
@@ -204,6 +205,7 @@ frappe.ui.form.on('Complaint UIS', {
 			frappe.new_doc("NCR UIS", {
 				type: "Complaint",
 				complaint_number:frm.doc.name
+				
 			});
 		})
     }

@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "autoincrement",
+ "autoname": "format:RN-{####}",
  "creation": "2023-08-25 08:06:54.183616",
  "default_view": "List",
  "doctype": "DocType",
@@ -18,11 +18,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-25 08:07:06.116035",
+ "modified": "2023-08-31 10:37:29.118582",
  "modified_by": "Administrator",
  "module": "Uis",
  "name": "Receiving Note UIS",
- "naming_rule": "Autoincrement",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
