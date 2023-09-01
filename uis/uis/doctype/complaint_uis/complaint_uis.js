@@ -2,6 +2,11 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Complaint UIS', {
+	status: function (frm) {
+		if (frm.doc.status!='Closed') {
+			frm.set_value('complaint_close_date', '');
+		}
+	},
 	setup: function (frm) {
 		frm.set_query("complaint_by", function () {
 			return {
