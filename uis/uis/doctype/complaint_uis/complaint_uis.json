@@ -19,8 +19,8 @@
   "status",
   "complete_date",
   "complaint_details_section",
-  "complaint_by",
   "complaint_others",
+  "complaint_by",
   "party",
   "full_name",
   "phone",
@@ -108,8 +108,8 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Complaint By",
-   "options": "DocType",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.complaint_others==0",
+   "options": "DocType"
   },
   {
    "fieldname": "contact_person",
@@ -164,7 +164,7 @@
    "fieldname": "receiving_note",
    "fieldtype": "Link",
    "label": "Receiving Note",
-   "options": "Receiving Note UIS"
+   "options": "Receive Note UIS"
   },
   {
    "fieldname": "section_break_gjkss",
@@ -178,7 +178,8 @@
   {
    "fieldname": "complaint_close_date",
    "fieldtype": "Date",
-   "label": "Complaint Close Date"
+   "label": "Complaint Close Date",
+   "mandatory_depends_on": "eval:doc.status=='Closed'"
   },
   {
    "fieldname": "column_break_smays",
@@ -217,11 +218,11 @@
    "options": "Open\nIn Process\nOverdue\nClosed"
   },
   {
-   "depends_on": "eval:(doc.complaint_by==\"Employee\")||(doc.complaint_by==\"Customer\")||(doc.complaint_by==\"Supplier\")",
+   "depends_on": "eval:((doc.complaint_by==\"Employee\")||(doc.complaint_by==\"Customer\")||(doc.complaint_by==\"Supplier\"))&&(doc.complaint_others==0)",
    "fieldname": "party",
    "fieldtype": "Dynamic Link",
    "label": "Party",
-   "mandatory_depends_on": "eval:(doc.complaint_by==\"Employee\")||(doc.complaint_by==\"Customer\")||(doc.complaint_by==\"Supplier\")",
+   "mandatory_depends_on": "eval:((doc.complaint_by==\"Employee\")||(doc.complaint_by==\"Customer\")||(doc.complaint_by==\"Supplier\"))&&(doc.complaint_others==0)",
    "options": "complaint_by"
   },
   {
@@ -285,14 +286,13 @@
    "options": "Territory"
   }
  ],
- "index_web_pages_for_search": 1,
  "links": [
   {
    "link_doctype": "NCR UIS",
    "link_fieldname": "complaint_number"
   }
  ],
- "modified": "2023-08-31 10:25:24.138675",
+ "modified": "2023-09-01 08:06:39.792443",
  "modified_by": "Administrator",
  "module": "Uis",
  "name": "Complaint UIS",
@@ -316,11 +316,11 @@
  "sort_order": "DESC",
  "states": [
   {
-   "color": "Orange",
+   "color": "Green",
    "title": "Open"
   },
   {
-   "color": "Green",
+   "color": "Light Blue",
    "title": "In Process"
   },
   {

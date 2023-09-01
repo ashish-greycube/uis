@@ -6,7 +6,7 @@
  "autoname": "field:competitor_name",
  "creation": "2023-08-26 12:28:27.354167",
  "default_view": "List",
- "description": "Buyer of Goods and Services.",
+ "description": "Competitor",
  "doctype": "DocType",
  "document_type": "Setup",
  "engine": "InnoDB",
@@ -71,19 +71,18 @@
    "label": "Contact & Address"
   },
   {
-   "description": "Select, to make the customer searchable with these fields",
    "fieldname": "primary_address_and_contact_detail",
    "fieldtype": "Section Break",
    "label": "Primary Address and Contact"
   },
   {
-   "fetch_from": "customer_primary_contact.mobile_no",
+   "fetch_from": "competitor_primary_contact.mobile_no",
    "fieldname": "mobile_no",
    "fieldtype": "Read Only",
    "label": "Mobile No"
   },
   {
-   "fetch_from": "customer_primary_contact.email_id",
+   "fetch_from": "competitor_primary_contact.email_id",
    "fieldname": "email_id",
    "fieldtype": "Read Only",
    "label": "Email Id"
@@ -130,7 +129,7 @@
    "description": "Reselect, if the chosen contact is edited after save",
    "fieldname": "competitor_primary_contact",
    "fieldtype": "Link",
-   "label": "Customer Primary Contact",
+   "label": "Competitor Primary Contact",
    "options": "Contact"
   },
   {
@@ -142,9 +141,8 @@
   }
  ],
  "icon": "fa fa-user",
- "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-31 15:58:08.586032",
+ "modified": "2023-09-01 08:57:11.701872",
  "modified_by": "Administrator",
  "module": "Uis",
  "name": "Competitor UIS",
@@ -226,6 +224,5 @@
  "sort_field": "modified",
  "sort_order": "ASC",
  "states": [],
- "title_field": "competitor_name",
- "track_changes": 1
+ "title_field": "competitor_name"
 }

@@ -10,7 +10,6 @@ class ComplaintUIS(Document):
 
 @frappe.whitelist()
 def get_contact_and_email(doctype,name):
-		
 		x = get_default_contact(doctype, name)
 		if x:
 			y = get_contact_details(x)

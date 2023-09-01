@@ -1,28 +1,36 @@
 {
  "actions": [],
- "autoname": "format:RN-{####}",
- "creation": "2023-08-25 08:06:54.183616",
+ "autoname": "naming_series:naming_series",
+ "creation": "2023-09-01 07:38:03.010210",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "naming_series",
   "notes"
  ],
  "fields": [
   {
+   "default": "RN-.{####}",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "options": "RN-.{####}"
+  },
+  {
+   "allow_in_quick_entry": 1,
    "fieldname": "notes",
    "fieldtype": "Data",
    "label": "Notes"
   }
  ],
- "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-08-31 10:37:29.118582",
+ "modified": "2023-09-01 09:02:27.739178",
  "modified_by": "Administrator",
  "module": "Uis",
- "name": "Receiving Note UIS",
- "naming_rule": "Expression",
+ "name": "Receive Note UIS",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -38,6 +46,7 @@
    "write": 1
   }
  ],
+ "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
