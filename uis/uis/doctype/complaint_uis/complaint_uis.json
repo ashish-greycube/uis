@@ -31,7 +31,6 @@
   "others_name",
   "others_phone",
   "others_email",
-  "others_territory",
   "document_details_column",
   "document_details",
   "sales_order",
@@ -260,12 +259,6 @@
    "options": "Email"
   },
   {
-   "depends_on": "eval:doc.complaint_others==1",
-   "fieldname": "others_territory",
-   "fieldtype": "Data",
-   "label": "Territory"
-  },
-  {
    "default": "0",
    "fieldname": "complaint_others",
    "fieldtype": "Check",
@@ -292,7 +285,7 @@
    "link_fieldname": "complaint_number"
   }
  ],
- "modified": "2023-09-01 08:06:39.792443",
+ "modified": "2023-09-01 14:30:56.766781",
  "modified_by": "Administrator",
  "module": "Uis",
  "name": "Complaint UIS",
